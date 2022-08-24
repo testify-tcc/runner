@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from models import RunRequest
 from utils.file import createFiles, deleteDirectory
 import docker
@@ -13,6 +14,16 @@ TMP_DIRECTORY_NAME = 'tmp'
 TMP_SANDBOX_DIRECTORY_PATH = f"{DOCKER_CONTAINER_WORKDIR}/tmp"
 
 app = FastAPI()
+
+app.add_middleware(
+  CORSMiddleware,
+  allow_origins=[
+    "http://localhost:3000",
+  ],
+  allow_credentials=True,
+  allow_methods=["*"],
+  allow_headers=["*"],
+)
 
 @app.get("/")
 async def root():
