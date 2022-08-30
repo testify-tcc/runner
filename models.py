@@ -3,7 +3,7 @@ from enum import Enum
 from typing import List
 
 class File(BaseModel):
-  filename: str
+  fileName: str
   content: str
 
 class RunRequest(BaseModel):
