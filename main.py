@@ -1,9 +1,11 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from models import RunRequest
-from utils.file import createFiles, deleteDirectory
-import docker
 import os
+import env
+import docker
+
+from fastapi import FastAPI
+from models import RunRequest
+from fastapi.middleware.cors import CORSMiddleware
+from utils.file import createFiles, deleteDirectory
 
 DOCKER_JAVASCRIPT_JEST_IMAGE_NAME = 'vinigpereira/javascript-jest:latest'
 DOCKER_JAVASCRIPT_JEST_TEST_COMMAND = 'jest'
@@ -15,9 +17,7 @@ app = FastAPI()
 
 app.add_middleware(
   CORSMiddleware,
-  allow_origins=[
-    "http://localhost:8080",
-  ],
+  allow_origins=[env.CLIENT_ENDPOINT],
   allow_credentials=True,
   allow_methods=["*"],
   allow_headers=["*"],
