@@ -9,7 +9,7 @@ class RunRequestFile(BaseModel):
 class RunRequestBody(BaseModel):
   testCommand: str
   files: List[RunRequestFile]
-  dockerImageName: DockerImageName
+  testingEnvironment: DockerImageName
 
   class Config():
     arbitrary_types_allowed = True

@@ -15,7 +15,7 @@ class RunnerService():
   def run(self, body: RunRequestBody) -> RunRequestResponse:
     files = body.files
     testCommand = body.testCommand
-    dockerImageName = body.dockerImageName
+    dockerImageName = body.testingEnvironment
 
     self.runnerFileService.createFiles(files)
 
