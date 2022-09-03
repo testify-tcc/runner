@@ -2,23 +2,23 @@ from models.docker_image_name import DockerImageName
 from models.run_request import RunRequestBody, RunRequestResponse
 from services.docker_service import DockerService
 from services.runner_file_service import RunnerFileService
-from services.testing_environment_service import TestingEnvironmentService
+from services.docker_image_map_service import DockerImageMapService
 
 class RunnerService():
   def __init__(
     self,
     dockerService: DockerService,
     runnerFileService: RunnerFileService,
-    testingEnvironmentService: TestingEnvironmentService,
+    dockerImageMapService: DockerImageMapService,
   ) -> None:
     self.dockerService = dockerService
     self.runnerFileService = runnerFileService
-    self.testingEnvironmentService = testingEnvironmentService
+    self.dockerImageMapService = dockerImageMapService
 
   def run(self, body: RunRequestBody) -> RunRequestResponse:
     files = body.files
     testCommand = body.testCommand
-    dockerImageName = self.testingEnvironmentService.getDockerImageFromTestingEnvironment(body.testingEnvironment)
+    dockerImageName = self.dockerImageMapService.getDockerImageFromTestingEnvironment(body.testingEnvironment)
 
     self.runnerFileService.createFiles(files)
 
