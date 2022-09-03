@@ -21,8 +21,3 @@ class RunnerFileService():
   def deleteFiles(self, files: List[RunRequestFile]) -> None:
     for file in files:
       self.deleteFile(file.name)
-
-  def deleteDirectory(self, filesToDelete: List[RunRequestFile]) -> None:
-    self.deleteFiles(filesToDelete)
-    pathClient = Path(env.PROJECT_TMP_DIRECTORY)
-    pathClient.rmdir()

@@ -1,7 +1,7 @@
 import docker
+
 from models.docker_image_name import DockerImageName
 from models.testing_environment import TestingEnvironment
-
 from services.docker_service import DockerService
 from services.runner_service import RunnerService
 from services.runner_file_service import RunnerFileService

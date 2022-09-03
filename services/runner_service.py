@@ -24,7 +24,7 @@ class RunnerService():
 
     dockerContainerOutput = self.runTestAndGetOutput(dockerImageName, testCommand)
 
-    self.runnerFileService.deleteDirectory(files)
+    self.runnerFileService.deleteFiles(files)
 
     return { 'passed': True, 'output': dockerContainerOutput }
 
