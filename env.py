@@ -1,8 +1,8 @@
 import os
 
 DOCKER_HUB_PROFILE = "vinigpereira"
-CLIENT_DEV_ENDPOINT = os.getenv("TESTIFY_CLIENT_DEV_ENDPOINT")
-CLIENT_PROD_ENDPOINT = os.getenv("TESTIFY_CLIENT_PROD_ENDPOINT")
+CLIENT_DEV_ENDPOINT = "http://localhost:8080"
+CLIENT_PROD_ENDPOINT = "https://imeusp-testify.netlify.app/"
 PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 DOCKER_WORKDIR = "/sandbox"
 DOCKER_TMP_DIRECTORY = f"{DOCKER_WORKDIR}/tmp"
