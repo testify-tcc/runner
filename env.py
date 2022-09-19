@@ -1,7 +1,8 @@
 import os
 
 DOCKER_HUB_PROFILE = "vinigpereira"
-CLIENT_ENDPOINT = "http://localhost:3000"
+CLIENT_DEV_ENDPOINT = os.getenv("TESTIFY_CLIENT_DEV_ENDPOINT")
+CLIENT_PROD_ENDPOINT = os.getenv("TESTIFY_CLIENT_PROD_ENDPOINT")
 PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 DOCKER_WORKDIR = "/sandbox"
 DOCKER_TMP_DIRECTORY = f"{DOCKER_WORKDIR}/tmp"

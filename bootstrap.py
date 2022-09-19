@@ -8,7 +8,10 @@ def bootstrap():
 
   app.add_middleware(
     CORSMiddleware,
-    allow_origins=[env.CLIENT_ENDPOINT],
+    allow_origins=[
+      env.CLIENT_DEV_ENDPOINT,
+      env.CLIENT_PROD_ENDPOINT
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
