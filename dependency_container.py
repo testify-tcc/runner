@@ -1,4 +1,5 @@
 import docker
+from builders.test_verifier_builder import TestVerifierBuilder
 
 from models.docker_image_name import DockerImageName
 from models.testing_environment import TestingEnvironment
@@ -19,5 +20,12 @@ dockerImageMapService = DockerImageMapService([
   (TestingEnvironment.TYPESCRIPT_JEST, DockerImageName.TYPESCRIPT_JEST),
 ])
 
+testVerifierBuilder = TestVerifierBuilder()
+
 runnerFileService = RunnerFileService()
-runnerService = RunnerService(dockerService, runnerFileService, dockerImageMapService)
+runnerService = RunnerService(
+  dockerService,
+  runnerFileService,
+  dockerImageMapService,
+  testVerifierBuilder
+)

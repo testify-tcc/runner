@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 from pydantic import BaseModel
 from models.docker_image_name import DockerImageName
 
@@ -15,5 +15,5 @@ class RunRequestBody(BaseModel):
     arbitrary_types_allowed = True
 
 class RunRequestResponse(BaseModel):
-  passed: bool
+  passed: Union[bool, None]
   output: str
