@@ -12,7 +12,7 @@ class RunnerFileService():
 
   def createFiles(self, files: List[RunRequestFile]) -> None:
     for file in files:
-      self.createFile(file.name, file.content)
+      self.createFile(file.fileName, file.content)
 
   def deleteFile(self, fileName: str) -> None:
     file = Path(f"{env.PROJECT_TMP_DIRECTORY}/{fileName}");
@@ -20,4 +20,4 @@ class RunnerFileService():
 
   def deleteFiles(self, files: List[RunRequestFile]) -> None:
     for file in files:
-      self.deleteFile(file.name)
+      self.deleteFile(file.fileName)

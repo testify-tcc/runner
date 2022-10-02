@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from models.docker_image_name import DockerImageName
 
 class RunRequestFile(BaseModel):
-  name: str
+  fileName: str
   content: str
 
 class RunRequestBody(BaseModel):

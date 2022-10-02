@@ -6,4 +6,5 @@ app = bootstrap()
 
 @app.post("/", response_model=RunRequestResponse)
 def run(body: RunRequestBody) -> RunRequestResponse:
+  print(body)
   return runnerService.run(body)
