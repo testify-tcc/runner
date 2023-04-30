@@ -6,15 +6,17 @@ def testPassingTest():
     "testCommand": "jest",
     "files": [
       {
-        "name": "sum.ts",
-        "content": "'use strict';\n\nexport function sum(a: number, b: number): number {\n  return a + b;\n}"
+        "fileName": "sum.ts",
+        "content": "\"use strict\";\n\nexport function sum(a: number, b: number): number {\n  return a + b;\n}\n"
       },
       {
-        "name": "sum.test.ts",
-        "content": "import { sum } from './sum';\n\n'use strict';\n\ntest('should return proper result', () => {\n  expect(sum(1, 1)).toBe(2);\n});"
+        "fileName": "sum.test.ts",
+        "content": "\"use strict\";\n\nimport { sum } from \"./sum\";\n\ntest(\"should return proper result\", "
+                   "() => {\n  expect(sum(1, 1)).toBe(2);\n  expect(sum(-1, 1)).toBe(0);\n  expect(sum(-1, "
+                   "-1)).toBe(-2);\n});"
       }
     ]
-  });
+  })
 
   responseBody = response.json()
   output = responseBody['output']
@@ -24,18 +26,20 @@ def testPassingTest():
 def testFailingTest():
   response = client.post('/', json={
     "testingEnvironment": "typescript-jest",
-    "testCommand":  "jest",
+    "testCommand": "jest",
     "files": [
       {
-        "name": "sum.ts",
-        "content": "'use strict';\n\nexport function sum(a: number, b: number): number {\n  return a + b;\n}"
+        "fileName": "sum.ts",
+        "content": "\"use strict\";\n\nexport function sum(a: number, b: number): number {\n  return a + b;\n}\n"
       },
       {
-        "name": "sum.test.ts",
-        "content": "import { sum } from './sum';\n\n'use strict';\n\ntest('should return proper result', () => {\n  expect(sum(1, 2)).toBe(2);\n});"
+        "fileName": "sum.test.ts",
+        "content": "\"use strict\";\n\nimport { sum } from \"./sum\";\n\ntest(\"should return proper result\", "
+                   "() => {\n  expect(sum(1, 1)).toBe(3);\n  expect(sum(-1, 1)).toBe(2);\n  expect(sum(-1, "
+                   "-1)).toBe(-1);\n});"
       }
     ]
-  });
+  })
 
   responseBody = response.json()
   output = responseBody['output']
