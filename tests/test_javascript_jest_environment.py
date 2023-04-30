@@ -6,20 +6,23 @@ def testPassingTest():
     "testCommand": "jest",
     "files": [
       {
-        "name": "sum.js",
-        "content": "'use strict';\n\nfunction sum(a, b) {\n  return a + b;\n}\n\nmodule.exports = { sum };"
+        "fileName": "sum.js",
+        "content": "\"use strict\";\n\nfunction sum(a, b) {\n  return a + b;\n}\n\nmodule.exports = { sum };\n"
       },
       {
-        "name": "sum.test.js",
-        "content": "const { sum } = require('./sum.js');\n\n'use strict';\n\ntest('should return proper result', () => {\n  expect(sum(1, 1)).toBe(2);\n});"
+        "fileName": "sum.test.js",
+        "content": "\"use strict\";\n\nconst { sum } = require(\"./sum.js\");\n\ntest(\"should return proper "
+                   "result\", () => {\n  expect(sum(1, 1)).toBe(2);\n  expect(sum(-1, 1)).toBe(0);\n  expect(sum(-1, "
+                   "-1)).toBe(-2);\n});"
       }
     ]
-  });
+  })
 
   responseBody = response.json()
   output = responseBody['output']
 
   assert "PASS" in output
+
 
 def testFailingTest():
   response = client.post('/', json={
@@ -27,15 +30,17 @@ def testFailingTest():
     "testCommand": "jest",
     "files": [
       {
-        "name": "sum.js",
-        "content": "'use strict';\n\nfunction sum(a, b) {\n  return a + b;\n}\n\nmodule.exports = { sum };"
+        "fileName": "sum.js",
+        "content": "\"use strict\";\n\nfunction sum(a, b) {\n  return a + b;\n}\n\nmodule.exports = { sum };\n"
       },
       {
-        "name": "sum.test.js",
-        "content": "const { sum } = require('./sum.js');\n\n'use strict';\n\ntest('should return proper result', () => {\n  expect(sum(1, 2)).toBe(2);\n});"
+        "fileName": "sum.test.js",
+        "content": "\"use strict\";\n\nconst { sum } = require(\"./sum.js\");\n\ntest(\"should return proper "
+                   "result\", () => {\n  expect(sum(1, 1)).toBe(1);\n  expect(sum(-1, 1)).toBe(2);\n  expect(sum(-1, "
+                   "-1)).toBe(-2);\n});"
       }
     ]
-  });
+  })
 
   responseBody = response.json()
   output = responseBody['output']
