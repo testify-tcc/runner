@@ -32,7 +32,7 @@ class RunnerService():
 
     self.runnerFileService.createFiles(files, uniqueIdentifier)
 
-    dockerContainerOutput = self.runTestAndGetOutput(dockerImageName, testCommand)
+    dockerContainerOutput = self.runTestAndGetOutput(dockerImageName, testCommand, uniqueIdentifier)
 
     testPassed = None
 
@@ -43,9 +43,9 @@ class RunnerService():
 
     return { 'passed': testPassed, 'output': dockerContainerOutput }
 
-  def runTestAndGetOutput(self, dockerImageName: DockerImageName, testCommand: str) -> str:
+  def runTestAndGetOutput(self, dockerImageName: DockerImageName, testCommand: str, identifier: uuid) -> str:
     self.dockerService.pullImage(dockerImageName)
-    dockerContainer = self.dockerService.runAndGetContainer(dockerImageName, testCommand)
+    dockerContainer = self.dockerService.runAndGetContainer(dockerImageName, testCommand, identifier)
     dockerContainerLogStream = dockerContainer.logs()
     dockerContainer.stop()
     dockerContainer.remove()
