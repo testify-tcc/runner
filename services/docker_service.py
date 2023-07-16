@@ -35,6 +35,7 @@ class DockerService():
       processedImageName,
       testCommand,
       detach=True,
+      auto_remove=True,
       working_dir=env.DOCKER_WORKDIR,
       volumes=[f"{env.PROJECT_TMP_DIRECTORY}:{env.DOCKER_TMP_DIRECTORY}"],
       network_mode="none",
